@@ -1,0 +1,41 @@
+import urllib
+import requests
+
+"""
+ Return True if the word is the same forwards and backwards
+ Do not use automatic methods for reversing the string
+ """
+
+url = "https://www.gutenberg.org/files/11/11-0.txt"
+file = urllib.requests.urlopen(url)
+file2 = " "
+
+for line in file:
+    file2 = open(r"file", "Access_Mode")
+
+
+
+def is_palindrome(word):
+    if word == word[::-1]:
+     return True
+
+def find_all_palindromes(file2):
+     pass
+
+
+
+ #Run a few tests
+if is_palindrome('racecar'):
+    print('pass')
+else:
+    print('fail')
+
+if is_palindrome('mom'):
+    print('pass')
+else:
+    print('fail')
+
+if is_palindrome('noon'):
+    print('pass')
+else:
+    print('fail')
