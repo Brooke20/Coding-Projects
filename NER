@@ -1,0 +1,34 @@
+from mediawiki import MediaWiki
+import nltk
+import ssl
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+nltk.download('averaged_perceptron_tagger')
+nltk.download('maxent_ne_chunker')
+nltk.download('words')
+wikipedia = MediaWiki()
+
+p = wikipedia.page('Empty Book')
+content= p.content
+print(content)
+
+x = nltk.word_tokenize(content)
+print(x)
+
+n = nltk.pos_tag(x)
+print(n)
+
+print(nltk.ne_chunk(n))
+
+#accuracy = 72.7%
+#precision = 75%
+#Recall = 85.7%
+#F - measure = 79.9%
+
+
