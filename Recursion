@@ -1,0 +1,55 @@
+from tokenize import tokenize
+import nltk
+"""
+ Return True if the word is the same forwards and backwards
+ Do not use automatic methods for reversing the string
+ """
+
+
+def is_palindrome(word):
+    if word == word[::-1]:
+     return True
+
+def find_all_palindromes(fileName):
+    txtFile = open(fileName).read()
+    tokens = nltk.word_tokenize(txtFile)
+
+    for x in tokens:
+        if is_palindrome(x):
+            if len(x) != 1:
+                print(x)
+
+def is_recursive(word):
+    if len(word) == 4:
+        if word[3:] == word[:-3]:
+            return True
+    elif len(word) == 3:
+        if word[2:] == word[:-2]:
+            return True
+    else:
+        return is_recursive(word[1:-1])
+
+
+
+#find_all_palindromes('palindromeText.txt')
+
+ #Run a few tests
+if is_recursive('racecar'):
+    print('pass')
+else:
+    print('fail')
+
+if is_recursive('mom'):
+    print('pass')
+else:
+    print('fail')
+
+if is_recursive('noon'):
+    print('pass')
+else:
+    print('fail')
+
+if is_recursive('Hydroflask'):
+    print('Pass')
+else:
+    print('Fail')
