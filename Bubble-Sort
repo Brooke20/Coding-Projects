@@ -1,0 +1,15 @@
+def bubble_sort(test):
+    n = len(test)
+    for i in range(n - 1):
+        for j in range(0, n - i - 1):
+            if test[j] > test[j + 1]:
+                test[j], test[j + 1] = test[j + 1], test[j]
+
+    print("Sorted array is:")
+    for i in range(len(test)):
+        print("%d" % test[i])
+
+test = [5, 2, 4, 3, 10, 7, 1, 9, 6, 8]
+
+
+print(bubble_sort(test))
