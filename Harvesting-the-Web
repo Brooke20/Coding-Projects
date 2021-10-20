@@ -1,0 +1,332 @@
+import requests, re
+
+cyber=requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Cybersecurity-Accelerated-Second-Degree-BS')
+itbs = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Information-Technology-B-S')
+itcomb = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Information-Technology-Combined-B-S-M-S-Program')
+itcyber = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Information-Technology-and-Cybersecurity-Combined-B-S-M-S-Program')
+itmba = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Information-Technology-B-S-to-M-B-A-Program')
+guarenteed = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Information-Technology-M-B-A-Guaranteed-Admission-Program')
+minor = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Computer-Networking-and-Cybersecurity-Minor')
+compsci = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Computer-Science-Minor')
+datascience = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Data-Science-Minor')
+forensic = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Forensic-Computing-Minor')
+itminor = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Information-Technology-Minor')
+postbacc = requests.get('http://marymount.smartcatalogiq.com/2019-2020/Catalogs/Undergraduate-Catalog/School-of-Business-Administration/Information-Technology-and-Cybersecurity/Data-Science-Post-Baccalaureate-Certificate')
+
+print(cyber.status_code)
+
+from bs4 import BeautifulSoup
+
+soup = BeautifulSoup(cyber.text, 'html.parser')
+
+#urls = ['cyber', 'itbs', 'itcomb', 'itcyber', 'itmba', 'guarenteed', 'minor', 'compsci', 'datascience', 'forensic', 'itminor', 'postbacc']
+
+text = cyber.text.replace('\n', ' ').replace('\r', '')
+text2 = itbs.text.replace('\n', ' ').replace('\r', '')
+text3 = itcomb.text.replace('\n', ' ').replace('\r', '')
+text4 = itcyber.text.replace('\n', ' ').replace('\r', '')
+text5 = itmba.text.replace('\n', ' ').replace('\r', '')
+text6 = guarenteed.text.replace('\n', ' ').replace('\r', '')
+text7 = minor.text.replace('\n', ' ').replace('\r', '')
+text8 = compsci.text.replace('\n', ' ').replace('\r', '')
+text9 = datascience.text.replace('\n', ' ').replace('\r', '')
+text10 = forensic.text.replace('\n', ' ').replace('\r', '')
+text11 = itminor.text.replace('\n', ' ').replace('\r', '')
+text12 = postbacc.text.replace('\n', ' ').replace('\r', '')
+
+#text - cyber
+retitle = re.findall(r"<title>(.*)</title>", text)
+for a in retitle:
+    print(a)
+
+#text2 - itbs
+retitle = re.findall(r"<title>(.*)</title>", text2)
+for a in retitle:
+    print(a)
+
+#text3 - itcomb
+retitle = re.findall(r"<title>(.*)</title>", text3)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', itcomb.text)
+print(numbers)
+
+#text4 - itcyber
+retitle = re.findall(r"<title>(.*)</title>", text4)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', itcyber.text)
+print(numbers)
+
+#text5 - itmba
+retitle = re.findall(r"<title>(.*)</title>", text5)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', itmba.text)
+print(numbers)
+
+#text6 - itcyber
+retitle = re.findall(r"<title>(.*)</title>", text6)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', guarenteed.text)
+print(numbers)
+
+#text7 - minor
+retitle = re.findall(r"<title>(.*)</title>", text7)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', minor.text)
+print(numbers)
+
+#text8 - compsci
+retitle = re.findall(r"<title>(.*)</title>", text8)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', compsci.text)
+print(numbers)
+
+#text9 - datascience
+retitle = re.findall(r"<title>(.*)</title>", text9)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', datascience.text)
+print(numbers)
+
+#text10 - forensic
+retitle = re.findall(r"<title>(.*)</title>", text10)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', forensic.text)
+print(numbers)
+
+#text11 - itminor
+retitle = re.findall(r"<title>(.*)</title>", text11)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', itminor.text)
+print(numbers)
+
+#text12 - itcyber
+retitle = re.findall(r"<title>(.*)</title>", text12)
+for a in retitle:
+    print(a)
+numbers = re.findall(r'IT\s\w{,3}\w{1,}\s\d{,1}', postbacc.text)
+print(numbers)
+
+#cyber course title
+info = re.findall(r'<tbody>...</tbody>', text)
+
+courseNumbers = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text)
+print(courseNumbers)
+
+match1 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text)
+print(match1)
+
+matches1 = re.findall(r'<td><p class="credits">(\d)</p></td>', text)
+print(matches1)
+print("\n")
+
+#itbs course info
+info2 = re.findall(r'<tbody>...</tbody>', text2)
+
+courseNumbers2 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text2)
+print(courseNumbers2)
+
+match2 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text2)
+print(match2)
+
+matches2 = re.findall(r'<td><p class="credits">(\d)</p></td>', text2)
+print(matches2)
+print("\n")
+
+#itcomb course info
+info3 = re.findall(r'<tbody>...</tbody>', text3)
+
+courseNumbers3 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text3)
+print(courseNumbers3)
+
+match3 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text3)
+print(match3)
+
+matches3 = re.findall(r'<td><p class="credits">(\d)</p></td>', text3)
+print(matches3)
+print("\n")
+
+#itcyber course info
+info4 = re.findall(r'<tbody>...</tbody>', text4)
+
+courseNumbers4 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text4)
+print(courseNumbers4)
+
+match4 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text4)
+print(match4)
+
+matches4 = re.findall(r'<td><p class="credits">(\d)</p></td>', text4)
+print(matches4)
+print("\n")
+
+#itmba course info
+info5 = re.findall(r'<tbody>...</tbody>', text5)
+
+courseNumbers5 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text5)
+print(courseNumbers5)
+
+match5 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text5)
+print(match5)
+
+matches5 = re.findall(r'<td><p class="credits">(\d)</p></td>', text5)
+print(matches5)
+print("\n")
+
+#gurenteed course info
+info6 = re.findall(r'<tbody>...</tbody>', text6)
+
+courseNumbers6 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text6)
+print(courseNumbers6)
+
+match6 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text6)
+print(match6)
+
+matches6 = re.findall(r'<td><p class="credits">(\d)</p></td>', text6)
+print(matches6)
+print("\n")
+
+#minor course info
+info7 = re.findall(r'<tbody>...</tbody>', text7)
+
+courseNumbers7 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text7)
+print(courseNumbers7)
+
+match7 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text7)
+print(match7)
+
+matches7 = re.findall(r'<td><p class="credits">(\d)</p></td>', text7)
+print(matches7)
+print("\n")
+
+#compsci course info
+info8 = re.findall(r'<tbody>...</tbody>', text8)
+
+courseNumbers8 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text8)
+print(courseNumbers8)
+
+match8 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text8)
+print(match8)
+
+matches8 = re.findall(r'<td><p class="credits">(\d)</p></td>', text8)
+print(matches8)
+print("\n")
+
+#datascience course info
+info9 = re.findall(r'<tbody>...</tbody>', text9)
+
+courseNumbers9 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text9)
+print(courseNumbers9)
+
+match9 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text9)
+print(match9)
+
+matches9 = re.findall(r'<td><p class="credits">(\d)</p></td>', text9)
+print(matches9)
+print("\n")
+
+#forensic course info
+info10 = re.findall(r'<tbody>...</tbody>', text10)
+
+courseNumbers10 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text10)
+print(courseNumbers10)
+
+match10 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text10)
+print(match10)
+
+matches10 = re.findall(r'<td><p class="credits">(\d)</p></td>', text10)
+print(matches10)
+print("\n")
+
+#itminor course info
+info11 = re.findall(r'<tbody>...</tbody>', text11)
+
+courseNumbers11 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text11)
+print(courseNumbers11)
+
+match11 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text11)
+print(match11)
+
+matches11 = re.findall(r'<td><p class="credits">(\d)</p></td>', text11)
+print(matches11)
+print("\n")
+
+#postbacc course info
+info12 = re.findall(r'<tbody>...</tbody>', text12)
+
+courseNumbers12 = re.findall(r'<a class="sc-courselink".*?>(.+?)</a>.', text12)
+print(courseNumbers12)
+
+match12 = re.findall(r'<td class="sc-coursetitle">(.+?)</td>.', text12)
+print(match12)
+
+matches12 = re.findall(r'<td><p class="credits">(\d)</p></td>', text12)
+print(matches12)
+print("\n")
+
+with open("cybersecurity.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers))
+    outputFile.writelines("\n".join(match1))
+    outputFile.writelines("\n".join(matches1))
+
+with open("itbs.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers2))
+    outputFile.writelines("\n".join(match2))
+    outputFile.writelines("\n".join(matches2))
+
+with open("itcomb.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers3))
+    outputFile.writelines("\n".join(match3))
+    outputFile.writelines("\n".join(matches3))
+
+with open("itcyber.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers4))
+    outputFile.writelines("\n".join(match4))
+    outputFile.writelines("\n".join(matches4))
+
+with open("itmba.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers5))
+    outputFile.writelines("\n".join(match5))
+    outputFile.writelines("\n".join(matches5))
+
+with open("guarenteed.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers6))
+    outputFile.writelines("\n".join(match6))
+    outputFile.writelines("\n".join(matches6))
+
+with open("minor.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers7))
+    outputFile.writelines("\n".join(match7))
+    outputFile.writelines("\n".join(matches7))
+
+with open("compsci.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers8))
+    outputFile.writelines("\n".join(match8))
+    outputFile.writelines("\n".join(matches8))
+
+with open("datascience.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers9))
+    outputFile.writelines("\n".join(match9))
+    outputFile.writelines("\n".join(matches9))
+
+with open("forensic.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers10))
+    outputFile.writelines("\n".join(match10))
+    outputFile.writelines("\n".join(matches10))
+
+with open("itminor.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers11))
+    outputFile.writelines("\n".join(match11))
+    outputFile.writelines("\n".join(matches11))
+
+with open("postbacc.csv", "w") as outputFile:
+    outputFile.writelines("\n".join(courseNumbers12))
+    outputFile.writelines("\n".join(match12))
+    outputFile.writelines("\n".join(matches12))
+
