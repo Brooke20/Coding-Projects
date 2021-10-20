@@ -1,0 +1,66 @@
+from mediawiki import MediaWiki
+import nltk
+import ssl
+
+from textblob import TextBlob
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+nltk.download('averaged_perceptron_tagger')
+nltk.download('maxent_ne_chunker')
+nltk.download('words')
+wikipedia = MediaWiki()
+
+
+#celeb page
+p = wikipedia.page('Paris Hilton')
+content= p.content
+tb=TextBlob(content)
+print(f'Celeb Article: {tb.sentiment.polarity}')
+
+#science
+m = wikipedia.page('Escherichia coli')
+text = m.content
+tb=TextBlob(text)
+print(f'Science Article: {tb.sentiment.polarity}')
+
+#history
+n = wikipedia.page('Day of the Dead')
+data = n.content
+tb=TextBlob(data)
+print(f'History Article: {tb.sentiment.polarity}')
+
+#math
+q = wikipedia.page('Quadratic equation')
+info = q.content
+tb=TextBlob(info)
+print(f'Math Article: {tb.sentiment.polarity}')
+
+#literature
+s = wikipedia.page('Wuthering Heights')
+x = s.content
+tb=TextBlob(x)
+print(f'Literature Article: {tb.sentiment.polarity}')
+
+
+n1 = "Why did you purchase that? It's ugly."
+i = 1
+tb=TextBlob(n1)
+print(f'Sentence {i}: {tb.sentiment.polarity}')
+
+n2 = "I wish you would drive faster, you are so slow."
+tb=TextBlob(n2)
+print(f'Sentence {i+1}: {tb.sentiment.polarity}')
+
+p1 = "I love your dress."
+tb=TextBlob(p1)
+print(f'Sentence {i+2}: {tb.sentiment.polarity}')
+
+p2 = "Good game. You did awesome."
+tb=TextBlob(p2)
+print(f'Sentence {i+3}: {tb.sentiment.polarity}')
