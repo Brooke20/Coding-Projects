@@ -1,0 +1,42 @@
+#Reading the file
+import requests
+url = 'https://raw.githubusercontent.com/first20hours/google-10000-english/master/google-10000-english-usa.txt'
+page = requests.get(url)
+#Sort alphabetically
+value=sorted(page.text.split())
+#print(len(value))
+#print(value)
+
+#hash_table=[() for i in range(11000)]
+#print(hash_table)
+class HashTable:
+    def make_hashtable(nbuckets):
+        hash = []
+        for bucket in range(0, nbuckets):
+            hash.append([])
+        return hash
+
+    def hash(keyword, buckets):
+        h = 0
+        for s in keyword:
+            h = (h + ord(s)) % buckets
+        return h
+
+    def make_hashtable(nbuckets):
+        table = []
+        for unused in range(0, nbuckets):
+            table.append([])
+        return table
+    def hashtable_add(htable,key,value):
+        bucket = hashtable_get_bucket(htable,keyword)
+        bucket.append([key, value])
+
+print(HashTable)
+
+def hashval(str, size):
+    int hash = 0
+    # Take ordinal number of char in str, and just add
+    for x in str: hash += (ord(x))
+    return(hash % siz) # Depending on the range, do a modulo operation.
+print(hashval(str, size))
+
