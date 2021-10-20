@@ -1,0 +1,50 @@
+from mediawiki import MediaWiki
+import nltk
+import ssl
+
+from textblob import TextBlob
+
+try:
+    _create_unverified_https_context = ssl._create_unverified_context
+except AttributeError:
+    pass
+else:
+    ssl._create_default_https_context = _create_unverified_https_context
+
+nltk.download('averaged_perceptron_tagger')
+nltk.download('maxent_ne_chunker')
+nltk.download('words')
+wikipedia = MediaWiki()
+
+#Red
+p = wikipedia.page('Donald Trump')
+content= p.content
+tb=TextBlob(content)
+print(f'Donald Trump: {tb.sentiment.polarity}')
+
+m = wikipedia.page('Ronald Reagan')
+text = m.content
+tb=TextBlob(text)
+print(f'Ronald Reagan: {tb.sentiment.polarity}')
+
+n = wikipedia.page('Abraham Lincoln')
+data = n.content
+tb=TextBlob(data)
+print(f'Abraham Lincoln: {tb.sentiment.polarity}')
+
+
+#blue
+q = wikipedia.page('Barack Obaman')
+info = q.content
+tb=TextBlob(info)
+print(f'Barack Obama: {tb.sentiment.polarity}')
+
+s = wikipedia.page('Bill Clinton')
+x = s.content
+tb=TextBlob(x)
+print(f'Bill Clinton: {tb.sentiment.polarity}')
+
+t = wikipedia.page('Franklin D. Roosevelt')
+r = t.content
+tb=TextBlob(r)
+print(f'Franklin D. Roosevelt: {tb.sentiment.polarity}')
